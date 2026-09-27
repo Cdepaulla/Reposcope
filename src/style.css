@@ -1,0 +1,270 @@
+:root {
+  --cor-fundo: #0a0a0a;
+  --cor-cartao: #131313;
+  --cor-borda: #262626;
+  --cor-destaque: #c4b5fd;
+  --cor-destaque-clara: #ddd6fe;
+  --cor-destaque-escura: #7c3aed;
+  --cor-destaque-forte: #8b5cf6;
+  --cor-destaque-forte-escura: #6d28d9;
+  --cor-texto-fraco: #a0a0a0;
+  --cor-texto-vivo: #ececec;
+  --fonte-titulo: 'Space Grotesk', system-ui, sans-serif;
+  --fonte-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  /* casa as cores e a fonte do Bootstrap com a paleta do portfólio */
+  --bs-body-bg: var(--cor-fundo);
+  --bs-body-color: var(--cor-texto-vivo);
+  --bs-border-color: var(--cor-borda);
+  --bs-tertiary-bg: var(--cor-cartao);
+  --bs-secondary-bg: var(--cor-cartao);
+  --bs-success: var(--cor-destaque-forte);
+  --bs-success-rgb: 139, 92, 246;
+  --bs-link-color: var(--cor-destaque);
+  --bs-link-hover-color: var(--cor-destaque-clara);
+  --bs-font-sans-serif: 'IBM Plex Sans', system-ui, sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--cor-fundo);
+}
+
+.mono {
+  font-family: var(--fonte-mono);
+}
+
+.fonte-titulo {
+  font-family: var(--fonte-titulo);
+}
+
+/* .card define seu próprio --bs-card-bg, então sobrescrevemos aqui */
+.card {
+  --bs-card-bg: var(--cor-cartao);
+  border-color: var(--cor-borda);
+}
+
+.btn-success {
+  --bs-btn-color: var(--cor-fundo);
+  --bs-btn-bg: var(--cor-destaque-forte);
+  --bs-btn-border-color: var(--cor-destaque-forte);
+  --bs-btn-hover-color: var(--cor-fundo);
+  --bs-btn-hover-bg: var(--cor-destaque-clara);
+  --bs-btn-hover-border-color: var(--cor-destaque-clara);
+  --bs-btn-active-color: var(--cor-fundo);
+  --bs-btn-active-bg: var(--cor-destaque-forte-escura);
+  --bs-btn-active-border-color: var(--cor-destaque-forte-escura);
+  --bs-btn-disabled-bg: var(--cor-destaque-forte);
+  --bs-btn-disabled-border-color: var(--cor-destaque-forte);
+  --bs-btn-focus-shadow-rgb: 139, 92, 246;
+}
+
+.form-control,
+.form-select {
+  background-color: var(--cor-cartao);
+}
+
+.form-control:focus,
+.form-select:focus {
+  background-color: var(--cor-cartao);
+  border-color: var(--cor-destaque-forte);
+  box-shadow: 0 0 0 0.2rem rgba(139, 92, 246, 0.25);
+}
+
+/* cards com o mesmo hover do portfólio: sobe, borda e fundo ganham roxo */
+.cartao-hover {
+  transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.cartao-hover:hover {
+  transform: translateY(-4px);
+  border-color: var(--cor-destaque-forte) !important;
+  background-color: rgba(196, 181, 253, 0.05);
+}
+
+/* título de seção: anotação mono + heading com sublinhado em gradiente */
+.titulo-secao {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.75rem;
+}
+
+.titulo-secao__anotacao {
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--cor-destaque-forte);
+}
+
+.titulo-secao__titulo {
+  margin: 0;
+  font-family: var(--fonte-titulo);
+  font-size: clamp(1.7rem, 4vw, 2.3rem);
+  font-weight: 700;
+  padding-bottom: 1.1rem;
+  position: relative;
+}
+
+.titulo-secao__titulo::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 48px;
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--cor-destaque-forte-escura), var(--cor-destaque-forte));
+}
+
+/* pills (tópicos dos repositórios) */
+.pill {
+  font-family: var(--fonte-mono);
+  font-size: 0.72rem;
+  color: var(--cor-texto-vivo);
+  border: 1px solid var(--cor-borda);
+  padding: 3px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+/* selo numerado nos cards de repositório, como em "01", "02"... */
+.selo-numero {
+  font-family: var(--fonte-mono);
+  font-size: 0.72rem;
+  color: var(--cor-destaque-forte);
+  border: 1px solid var(--cor-destaque-forte-escura);
+  padding: 2px 9px;
+  border-radius: 20px;
+}
+
+/* brilho pulsante atrás do avatar, como no retrato da hero do portfólio */
+.avatar-wrap {
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.avatar-brilho {
+  position: absolute;
+  inset: -14%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(196, 181, 253, 0.34) 0%, rgba(124, 58, 237, 0.1) 55%, transparent 72%);
+  filter: blur(6px);
+  animation: brilho-pulso 4s ease-in-out infinite;
+}
+
+.avatar-wrap img {
+  position: relative;
+}
+
+/* halo roxo que acompanha o cursor */
+.brilho-mouse {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 520px;
+  height: 520px;
+  margin: -260px 0 0 -260px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(196, 181, 253, 0.13), rgba(196, 181, 253, 0.05) 45%, transparent 70%);
+  filter: blur(30px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  will-change: transform;
+}
+
+@media (hover: none) {
+  .brilho-mouse {
+    display: none;
+  }
+}
+
+/* fundo animado: grade sutil + manchas desfocadas */
+.fundo {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.fundo__grade {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(196, 181, 253, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(196, 181, 253, 0.035) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 90%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 90%);
+}
+
+.fundo__mancha {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.16;
+}
+
+.fundo__mancha--1 {
+  width: 420px;
+  height: 420px;
+  top: -10%;
+  left: -8%;
+  background: var(--cor-destaque-escura);
+  animation: deriva1 26s ease-in-out infinite;
+}
+
+.fundo__mancha--2 {
+  width: 380px;
+  height: 380px;
+  bottom: -10%;
+  right: -8%;
+  background: var(--cor-destaque);
+  animation: deriva2 32s ease-in-out infinite;
+}
+
+@keyframes deriva1 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(60px, 40px) scale(1.12);
+  }
+}
+
+@keyframes deriva2 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-50px, 60px) scale(1.08);
+  }
+}
+
+@keyframes brilho-pulso {
+  0%,
+  100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cartao-hover,
+  .brilho-mouse,
+  .fundo__mancha,
+  .avatar-brilho {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
+}
